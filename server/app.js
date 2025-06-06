@@ -10,7 +10,7 @@ const wordsRoutes= require('./routes/words/words.router.js');
                                                      
 app.use(express.json());
 
-const cors = require('cors');
+
 
 const allowedOrigins = [ 'https://code-word-of-the-day.vercel.app',
   /\.vercel\.app$/];
