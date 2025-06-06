@@ -9,7 +9,7 @@ const CodeWordOfTheDay = async (req, res) => {
 
     try {
         const query=
-        `SELECT * FROM codewords LIMIT 1 OFFSET $1`;
+        `SELECT * FROM public.codewords LIMIT 1 OFFSET $1`;
         const values = [index];
 
         const result = await pool.query(query, values);
@@ -28,7 +28,7 @@ const CodeWordOfTheDay = async (req, res) => {
 
 const techStack = async (req, res)=>{
     try{
-        const query=`SELECT * FROM codewords ORDER BY cw_id ASC`;
+        const query=`SELECT * FROM public.codewords ORDER BY cw_id ASC`;
    
         const result= await pool.query(query);
      
@@ -48,7 +48,7 @@ const searchWord = async (req, res) => {
     }
 
     try {
-        const query = `SELECT * FROM codewords WHERE LOWER(name) LIKE LOWER($1)`;
+        const query = `SELECT * FROM public.codewords WHERE LOWER(name) LIKE LOWER($1)`;
         const values = [`%${searchTerm}%`];
 
         const result = await pool.query(query, values);
@@ -70,7 +70,7 @@ const codetionaryWords = async (req, res) => {
 
     try{
         query=
-        `INSERT INTO codewords(name, meaning, field)
+        `INSERT INTO public.codewords(name, meaning, field)
         VALUES($1, $2, $3) RETURNING *`;
         const values = [name, meaning, field];
 

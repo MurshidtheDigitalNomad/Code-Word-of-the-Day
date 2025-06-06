@@ -5,9 +5,9 @@ const signUpUser = async (req , res)=>{
 
     try{
         const query=
-        `INSERT INTO users (username, name, password )
+        `INSERT INTO public.users (username, name, password )
         VALUES ($1, $2, $3)
-        RETURNING *;`;
+        RETURNING *;`
 
         const values=[username, name, password];
         const result = await pool.query(query, values);
@@ -26,7 +26,7 @@ const loginUser = async (req, res)=>{
     const {username, password} = req.body;
 
     try{
-        const query = `SELECT * FROM users WHERE username = $1 AND password = $2;`;
+        const query = `SELECT * FROM public.users WHERE username = $1 AND password = $2;`;
         const values = [username, password];
         const result = await pool.query(query, values);
 
