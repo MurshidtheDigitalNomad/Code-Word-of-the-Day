@@ -25,7 +25,7 @@ const SignUp=()=>{
         }
 
         try{
-            const response = await axios.post('http://localhost:8000/api/users/signup', formData);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/signup`, formData);
             if(response.status === 200){
                 alert("User created successfully, please sign in.");
                 console.log(response.data);

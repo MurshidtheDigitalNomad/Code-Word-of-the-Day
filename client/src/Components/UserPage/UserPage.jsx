@@ -35,7 +35,7 @@ const UserPage = () => {
             const index= generateNewCodeWord();
             console.log(index)
             try{
-                const response = await axios.get(`http://localhost:8000/api/codeword/${index}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/codeword/${index}`);
                 if(response.status === 200){
                     setCodeWord(response.data);
                 }else{
@@ -55,7 +55,7 @@ const UserPage = () => {
     const techStackWords = async () =>{
         if (!showTechStack) {
             try {
-            const response = await axios.get('http://localhost:8000/api/codeword/techstack');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/codeword/techstack`);
                 if (response.status === 200) {
                     console.log(response.data);
                     setTechStack(response.data);
@@ -78,7 +78,7 @@ const UserPage = () => {
             }
 
             try {
-                const response = await axios.get(`http://localhost:8000/api/codeword/techstack/search?search=${searchInput}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/codeword/techstack/search?search=${searchInput}`);
                 if (response.status === 200) {
                     setSearchResults(response.data);
                 } else {
@@ -99,7 +99,7 @@ const UserPage = () => {
 
     const codetionarySubmit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/codeword/codetionary', data);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/codeword/codetionary`, data);
             if (response.status === 201) {
                 alert("Code word added successfully");
             } else {
