@@ -11,7 +11,7 @@ const wordsRoutes= require('./routes/words/words.router.js');
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'https://code-word-of-the-day.vercel.app'
 }));
 
 app.use('/api/users', userRoutes)
