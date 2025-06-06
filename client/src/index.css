@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Orbitron:wght@400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Orbitron:wght@400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');*/
+
+@font-face {
+  font-family: 'MokotoGlitch';
+  src: url('mokoto-mokoto-regular-glitch-mark-1-400.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
