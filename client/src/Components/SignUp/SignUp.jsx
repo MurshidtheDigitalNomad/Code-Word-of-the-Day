@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 const SignUp=()=>{
     const [formData, setFormData] = useState({
@@ -20,24 +21,24 @@ const SignUp=()=>{
         e.preventDefault();
 
         if(formData.password !== formData.confirmPassword){
-            alert("Passwords do not match, please try again.");
+            toast.error("Passwords do not match, please try again.");
             return;
         }
 
         try{
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/signup`, formData);
             if(response.status === 200){
-                alert("User created successfully, please sign in.");
-                console.log(response.data);
+                toast.success("Account created successfully, please sign in.");
+
                 localStorage.setItem('username', JSON.stringify(response.data.user.username));
                 navigate(`/userPage/${response.data.user.username}`)
             }else{
-                alert('internal server error, please try again later.');
+                toast.error('Internal server error, please try again later.');
             }
 
         }catch(err){
             console.error(err);
-            alert('An error occurred while creating the user, please try again later.');
+            toast.error('An error occurred while creating the user, please try again later.');
         }
     
     }

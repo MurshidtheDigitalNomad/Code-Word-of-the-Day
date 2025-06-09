@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 
 const Login = () => {
@@ -20,16 +21,16 @@ const Login = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, loginData);
             if (response.status === 200) {
-                alert("Login successful!");
-                console.log(response.data);
+                toast.success("Login successful!");
+
                 localStorage.setItem('username', JSON.stringify(response.data.user.username));
                 navigate(`/userPage/${response.data.user.username}`);
             } else {
-                alert('Server issue, please try again later.');
+                toast.error('Server issue, please try again later.');
             }
         } catch (err) {
             console.error(err);
-            alert('An error occurred while logging in, please try again later.');
+            toast.error('An error occurred while logging in, please try again later.');
         }
     }
 

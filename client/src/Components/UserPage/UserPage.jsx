@@ -5,6 +5,7 @@ import { CiSquarePlus } from "react-icons/ci";
 import axios from 'axios';
 import CodetionaryModal from '../CodetionaryModal/CodetionaryModal';
 import WordCard from '../TechStackWordModal.jsx/TSWordModal';
+import {toast} from 'react-toastify';
 
 const generateNewCodeWord = () => {
     const startDate = new Date('2025-06-01');
@@ -22,7 +23,7 @@ const UserPage = () => {
     const [searchInput, setSearchInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isModalOpen, setIsModalOpen]= useState(false);
-    const [wordCard, setWordCard] = useState(false);
+    
     const [selectedWord, setSelectedWord] = useState(null);
     const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
     
@@ -33,18 +34,18 @@ const UserPage = () => {
 
         const fetchCodeWord = async ()=>{
             const index= generateNewCodeWord();
-            console.log(index)
+           
             try{
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/codeword/${index}`);
                 if(response.status === 200){
                     setCodeWord(response.data);
                 }else{
-                    alert("Error fetching code word");
+                    toast.error("Error fetching code word");
                 }
 
             }catch(error){
                 console.error(error);
-                alert("An error occurred while fetching the code word");
+                toast.error("An error occurred while fetching the code word");
             }
         }
         fetchCodeWord();
@@ -57,14 +58,14 @@ const UserPage = () => {
             try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/codeword/techstack`);
                 if (response.status === 200) {
-                    console.log(response.data);
+                    
                     setTechStack(response.data);
                 } else {
-                    alert("Error fetching tech stack words");
+                    toast.error("Error fetching tech stack words");
                 }
             } catch (error) {
                 console.error(error);
-                alert("An error occurred while fetching the tech stack words");
+                toast.error("An error occurred while fetching the tech stack words");
             }
         }
         setShowTechStack(!showTechStack);
@@ -82,11 +83,11 @@ const UserPage = () => {
                 if (response.status === 200) {
                     setSearchResults(response.data);
                 } else {
-                    alert("Error fetching tech stack words");
+                    toast.error("Error fetching tech stack words");
                 }
             } catch (error) {
                 console.error(error);
-                alert("An error occurred while searching the tech stack");
+                toast.error("An error occurred while searching the tech stack");
             }
         };
 
@@ -101,13 +102,13 @@ const UserPage = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/codeword/codetionary`, data);
             if (response.status === 201) {
-                alert("Code word added successfully");
+                toast.success("Code word added successfully");
             } else {
-                alert("Server issue while adding code word");
+                toast.error("Server issue while adding code word");
             }
         } catch (error) {
             console.error(error);
-            alert("An error occurred while adding the code word");
+            toast.error("An error occurred while adding the code word");
         }
     };
 
@@ -209,7 +210,7 @@ const UserPage = () => {
                                     onClick={techStackWords}
                                     className="text-l text-white font-mokoto hover:bg-cyan-500 hover:text-[#020d34] transition duration-300 shadow-lg hover:shadow-cyan-500/50"
                                     >
-                                    REVIEW YOUR TECH STACK
+                                    REVIEW GLOBAL TECH STACK
                                     </button>
                                 ) : (
                                     <div className="overflow-y-auto h-[200px] w-[320px] pr-3 scrollbar-thin scrollbar-thumb-cyan-500 scrollbar-track-transparent hover:scrollbar-thumb-cyan-400">
