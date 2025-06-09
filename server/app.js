@@ -13,7 +13,8 @@ app.use(express.json());
 
 
 const allowedOrigins = [ 'https://code-word-of-the-day.vercel.app',
-  /\.vercel\.app$/];
+  "https://code-word-of-the-day.onrender.com"
+];
 
 app.use(cors({
   origin: function(origin, callback) {
